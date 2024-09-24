@@ -17,10 +17,10 @@
         </item>
         <item>
         <title>Floyd 判圈算法</title>
-        <link>https://lynnn-yu.github.io/posts/floyd-algorithm/</link>
+        <link>https://lynnn-yu.github.io/posts/floyd-algorithm/floyd-algorithm/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://lynnn-yu.github.io/posts/floyd-algorithm/</guid>
+        <guid>https://lynnn-yu.github.io/posts/floyd-algorithm/floyd-algorithm/</guid>
         <description>&lt;h1 id=&#34;floyd-判圈算法floyds-cycle-detection-algorithm&#34;&gt;Floyd 判圈算法（Floyd’s Cycle Detection Algorithm）
 &lt;/h1&gt;&lt;h2 id=&#34;什么是-floyd-判圈算法&#34;&gt;什么是 Floyd 判圈算法？
 &lt;/h2&gt;&lt;p&gt;Floyd 判圈算法，也叫 &lt;strong&gt;龟兔赛跑算法&lt;/strong&gt;（Tortoise and Hare Algorithm），是一种用于检测链表中是否存在环的算法。该算法由 Robert W. Floyd 提出，旨在通过两个不同速度的指针遍历链表来判断链表是否存在循环。其时间复杂度为 O(n)，空间复杂度为 O(1)，因此在效率和资源占用方面非常优越。&lt;/p&gt;
@@ -109,10 +109,10 @@
         </item>
         <item>
         <title>Java中的Optional类</title>
-        <link>https://lynnn-yu.github.io/posts/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/</link>
+        <link>https://lynnn-yu.github.io/posts/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://lynnn-yu.github.io/posts/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/</guid>
+        <guid>https://lynnn-yu.github.io/posts/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/</guid>
         <description>&lt;p&gt;&lt;code&gt;Optional&amp;lt;T&amp;gt;&lt;/code&gt; 是 Java 8 引入的一个容器类，用来解决 &lt;code&gt;null&lt;/code&gt; 引用的问题。它可以包含或不包含一个非空值。&lt;code&gt;Optional&lt;/code&gt; 主要用于避免 &lt;code&gt;NullPointerException&lt;/code&gt;，使代码更加安全和可读。&lt;/p&gt;
 &lt;h3 id=&#34;创建-optional-对象&#34;&gt;创建 Optional 对象
 &lt;/h3&gt;&lt;p&gt;有几种方式可以创建一个 &lt;code&gt;Optional&lt;/code&gt; 对象：&lt;/p&gt;
@@ -431,10 +431,10 @@
         </item>
         <item>
         <title>Java集合框架：数据结构及常用操作一览</title>
-        <link>https://lynnn-yu.github.io/posts/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</link>
+        <link>https://lynnn-yu.github.io/posts/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://lynnn-yu.github.io/posts/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</guid>
+        <guid>https://lynnn-yu.github.io/posts/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</guid>
         <description>&lt;h2 id=&#34;核心接口&#34;&gt;核心接口
 &lt;/h2&gt;&lt;h3 id=&#34;一-collection&#34;&gt;一、 Collection
 &lt;/h3&gt;&lt;ul&gt;
@@ -1255,10 +1255,10 @@
         </item>
         <item>
         <title>Spring Data JPA 的JpaRepository</title>
-        <link>https://lynnn-yu.github.io/posts/spring-data-jpa-%E7%9A%84jparepository/</link>
+        <link>https://lynnn-yu.github.io/posts/spring-data-jpa-%E7%9A%84jparepository/spring-data-jpa-%E7%9A%84jparepository/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://lynnn-yu.github.io/posts/spring-data-jpa-%E7%9A%84jparepository/</guid>
+        <guid>https://lynnn-yu.github.io/posts/spring-data-jpa-%E7%9A%84jparepository/spring-data-jpa-%E7%9A%84jparepository/</guid>
         <description>&lt;p&gt;&lt;code&gt;JpaRepository&lt;/code&gt; 是 Spring Data JPA 中的一个接口，提供了对数据库实体进行CRUD（Create, Read, Update, Delete）操作的常用方法。它继承自 &lt;code&gt;PagingAndSortingRepository&lt;/code&gt; 和 &lt;code&gt;CrudRepository&lt;/code&gt;，并且提供了一些额外的 JPA 相关的功能。&lt;/p&gt;
 &lt;h3 id=&#34;使用-jparepository-的基本步骤&#34;&gt;使用 &lt;code&gt;JpaRepository&lt;/code&gt; 的基本步骤
 &lt;/h3&gt;&lt;h4 id=&#34;1-创建实体类&#34;&gt;1. 创建实体类
@@ -1468,10 +1468,10 @@
         </item>
         <item>
         <title>Spring MVC 中的Model</title>
-        <link>https://lynnn-yu.github.io/posts/spring-mvc-%E4%B8%AD%E7%9A%84model/</link>
+        <link>https://lynnn-yu.github.io/posts/spring-mvc-%E4%B8%AD%E7%9A%84model/spring-mvc-%E4%B8%AD%E7%9A%84model/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://lynnn-yu.github.io/posts/spring-mvc-%E4%B8%AD%E7%9A%84model/</guid>
+        <guid>https://lynnn-yu.github.io/posts/spring-mvc-%E4%B8%AD%E7%9A%84model/spring-mvc-%E4%B8%AD%E7%9A%84model/</guid>
         <description>&lt;p&gt;在 Spring MVC 中，&lt;code&gt;Model&lt;/code&gt; 用于在控制器和视图之间传递数据。当你在控制器方法中使用 &lt;code&gt;model.addAttribute()&lt;/code&gt; 添加数据时，这些数据会自动被传递到视图（如 Thymeleaf、JSP 等），并在视图中通过模型属性的名字进行访问。&lt;/p&gt;
 &lt;h3 id=&#34;model-传参的具体流程&#34;&gt;&lt;code&gt;Model&lt;/code&gt; 传参的具体流程
 &lt;/h3&gt;&lt;p&gt;&lt;strong&gt;1.控制器方法传递数据到视图&lt;/strong&gt;：&lt;/p&gt;
@@ -1699,28 +1699,6 @@
 &lt;li&gt;在控制器中，你可以通过 &lt;code&gt;model.addAttribute()&lt;/code&gt; 将数据传递给视图，视图模板可以通过指定的键名访问这些数据。&lt;/li&gt;
 &lt;li&gt;这种方式通常用于表单提交的场景，视图层会根据控制器传递的对象进行表单数据的绑定和显示。&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-        </item>
-        <item>
-        <title>关于我</title>
-        <link>https://lynnn-yu.github.io/about/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://lynnn-yu.github.io/about/</guid>
-        <description>&lt;h1 id=&#34;关于我&#34;&gt;关于我
-&lt;/h1&gt;&lt;p&gt;你好！我是 &lt;strong&gt;Lynn&lt;/strong&gt;，一个热爱技术与分享的博主。在这里，我记录我的学习与生活点滴，希望能与更多志同道合的朋友交流和探讨。&lt;/p&gt;
-&lt;h2 id=&#34;我的兴趣&#34;&gt;我的兴趣
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;编程与技术&lt;/strong&gt;：我对后端开发、前端设计、知识图谱、大语言模型以及其他技术充满兴趣。喜欢尝试新技术，并将我的学习成果记录下来。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;写作与分享&lt;/strong&gt;：通过写作分享自己的知识、经验和想法是我的快乐源泉。我相信，分享能帮助更多的人，同时也是自我提升的好方式。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;读书与旅行&lt;/strong&gt;：除了技术，我也喜欢读书和旅行。书籍让我开拓视野，旅行让我感受不同的文化与生活方式。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;联系方式&#34;&gt;联系方式
-&lt;/h2&gt;&lt;p&gt;如果你有任何问题，或者想与我探讨相关话题，欢迎通过以下方式与我联系：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;邮箱&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;mailto:wanglingyunj@163.com&#34; &gt;wanglingyunj@163.com&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;期待与你的交流，愿我们都能在知识的海洋中互相帮助、共同进步！&lt;/p&gt;
 </description>
         </item>
         <item>

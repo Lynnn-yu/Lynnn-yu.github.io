@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Lynn 的个人简介">
-<title>关于我</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="本文介绍了 Floyd 判圈算法的原理和应用，并结合代码示例讲解了如何通过该算法检测链表中的环。">
+<title>Floyd 判圈算法</title>
 
-<link rel='canonical' href='https://lynnn-yu.github.io/about/'>
+<link rel='canonical' href='https://lynnn-yu.github.io/posts/floyd-algorithm/floyd-algorithm/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="关于我">
-<meta property='og:description' content="Lynn 的个人简介">
-<meta property='og:url' content='https://lynnn-yu.github.io/about/'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Floyd 判圈算法">
+<meta property='og:description' content="本文介绍了 Floyd 判圈算法的原理和应用，并结合代码示例讲解了如何通过该算法检测链表中的环。">
+<meta property='og:url' content='https://lynnn-yu.github.io/posts/floyd-algorithm/floyd-algorithm/'>
 <meta property='og:site_name' content='Lynn&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='' />
-<meta name="twitter:title" content="关于我">
-<meta name="twitter:description" content="Lynn 的个人简介">
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='Floyd 判圈算法' /><meta property='article:tag' content='数据结构' />
+<meta name="twitter:title" content="Floyd 判圈算法">
+<meta name="twitter:description" content="本文介绍了 Floyd 判圈算法的原理和应用，并结合代码示例讲解了如何通过该算法检测链表中的环。">
     </head>
     <body class="
     article-page
@@ -249,8 +249,20 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#我的兴趣">我的兴趣</a></li>
-    <li><a href="#联系方式">联系方式</a></li>
+    <li><a href="#什么是-floyd-判圈算法">什么是 Floyd 判圈算法？</a></li>
+    <li><a href="#算法原理">算法原理</a>
+      <ol>
+        <li><a href="#主要步骤如下">主要步骤如下：</a></li>
+      </ol>
+    </li>
+    <li><a href="#代码实现">代码实现</a>
+      <ol>
+        <li><a href="#示例解释">示例解释</a></li>
+      </ol>
+    </li>
+    <li><a href="#算法复杂度分析">算法复杂度分析</a></li>
+    <li><a href="#应用场景">应用场景</a></li>
+    <li><a href="#总结">总结</a></li>
   </ol>
 </nav>
         </div>
@@ -267,15 +279,23 @@
 
     <div class="article-details">
     
+    <header class="article-category">
+        
+            <a href="/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/" >
+                技术博客
+            </a>
+        
+    </header>
+    
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/about/">关于我</a>
+            <a href="/posts/floyd-algorithm/floyd-algorithm/">Floyd 判圈算法</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            Lynn 的个人简介
+            本文介绍了 Floyd 判圈算法的原理和应用，并结合代码示例讲解了如何通过该算法检测链表中的环。
         </h3>
         
     </div>
@@ -313,26 +333,106 @@
     <section class="article-content">
     
     
-    <h1 id="关于我">关于我
-</h1><p>你好！我是 <strong>Lynn</strong>，一个热爱技术与分享的博主。在这里，我记录我的学习与生活点滴，希望能与更多志同道合的朋友交流和探讨。</p>
-<h2 id="我的兴趣">我的兴趣
-</h2><ul>
-<li><strong>编程与技术</strong>：我对后端开发、前端设计、知识图谱、大语言模型以及其他技术充满兴趣。喜欢尝试新技术，并将我的学习成果记录下来。</li>
-<li><strong>写作与分享</strong>：通过写作分享自己的知识、经验和想法是我的快乐源泉。我相信，分享能帮助更多的人，同时也是自我提升的好方式。</li>
-<li><strong>读书与旅行</strong>：除了技术，我也喜欢读书和旅行。书籍让我开拓视野，旅行让我感受不同的文化与生活方式。</li>
-</ul>
-<h2 id="联系方式">联系方式
-</h2><p>如果你有任何问题，或者想与我探讨相关话题，欢迎通过以下方式与我联系：</p>
+    <h1 id="floyd-判圈算法floyds-cycle-detection-algorithm">Floyd 判圈算法（Floyd’s Cycle Detection Algorithm）
+</h1><h2 id="什么是-floyd-判圈算法">什么是 Floyd 判圈算法？
+</h2><p>Floyd 判圈算法，也叫 <strong>龟兔赛跑算法</strong>（Tortoise and Hare Algorithm），是一种用于检测链表中是否存在环的算法。该算法由 Robert W. Floyd 提出，旨在通过两个不同速度的指针遍历链表来判断链表是否存在循环。其时间复杂度为 O(n)，空间复杂度为 O(1)，因此在效率和资源占用方面非常优越。</p>
+<h2 id="算法原理">算法原理
+</h2><p>Floyd 判圈算法使用两个指针：</p>
 <ul>
-<li><strong>邮箱</strong>: <a class="link" href="mailto:wanglingyunj@163.com" >wanglingyunj@163.com</a></li>
+<li><strong>慢指针</strong>（Tortoise）：每次移动一步。</li>
+<li><strong>快指针</strong>（Hare）：每次移动两步。</li>
 </ul>
-<p>期待与你的交流，愿我们都能在知识的海洋中互相帮助、共同进步！</p>
+<p>如果链表中存在环，那么快指针和慢指针最终会在环中相遇。如果链表中不存在环，快指针会先到达链表的末端。</p>
+<h3 id="主要步骤如下">主要步骤如下：
+</h3><ol>
+<li>初始化两个指针：慢指针 <code>slow</code> 和快指针 <code>fast</code> 都指向链表的头部。</li>
+<li>快指针每次移动两步，慢指针每次移动一步。</li>
+<li>如果快指针和慢指针在某个时刻相遇，则说明链表中存在环。</li>
+<li>如果快指针到达 <code>null</code>（链表的末尾），则说明链表中没有环。</li>
+</ol>
+<h2 id="代码实现">代码实现
+</h2><p>下面是使用 Python 实现的 Floyd 判圈算法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">has_cycle</span><span class="p">(</span><span class="n">head</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">slow</span> <span class="o">=</span> <span class="n">head</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">fast</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="n">next</span>          <span class="c1"># 慢指针每次移动一步</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>     <span class="c1"># 快指针每次移动两步</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">slow</span> <span class="o">==</span> <span class="n">fast</span><span class="p">:</span>          <span class="c1"># 如果相遇，则存在环</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">False</span>                  <span class="c1"># 如果遍历结束没有相遇，则不存在环</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="示例解释">示例解释
+</h3><p>假设我们有一个链表，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="mi">1</span><span class="w"> </span>-&gt; <span class="mi">2</span><span class="w"> </span>-&gt; <span class="mi">3</span><span class="w"> </span>-&gt; <span class="mi">4</span><span class="w"> </span>-&gt; <span class="mi">5</span><span class="w"> </span>-&gt; <span class="mi">2</span><span class="w"> </span><span class="p">(</span><span class="err">环</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在此例中，节点 5 指向节点 2，形成了一个环。使用上述代码，快慢指针最终会在环中相遇，从而检测出链表中存在环。</p>
+<h2 id="算法复杂度分析">算法复杂度分析
+</h2><ul>
+<li><strong>时间复杂度</strong>：O(n)，其中 n 是链表的节点数量。虽然快指针每次走两步，但整体仍然是线性时间复杂度，因为每个节点最多会被访问两次。</li>
+<li><strong>空间复杂度</strong>：O(1)，因为该算法只使用了两个额外的指针，不需要额外的空间存储其他数据。</li>
+</ul>
+<h2 id="应用场景">应用场景
+</h2><p>Floyd 判圈算法主要用于检测链表中的环，但它在其他问题中也能发挥作用，例如：</p>
+<ul>
+<li>图的遍历中用于检测循环路径。</li>
+<li>编译器中检测循环依赖。</li>
+<li>动态数据结构中检测重复模式或回路。</li>
+</ul>
+<h2 id="总结">总结
+</h2><p>Floyd 判圈算法是一种高效且简单的算法，适用于检测链表中的环。相比于其他算法，它的优势在于时间复杂度和空间复杂度的平衡。在解决链表环问题时，这个算法是首选之一。如果你正在处理链表结构或者需要在图结构中寻找循环，Floyd 算法将是一个强大的工具。</p>
 
 </section>
 
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+        
+            <a href="/tags/floyd-%E5%88%A4%E5%9C%88%E7%AE%97%E6%B3%95/">Floyd 判圈算法</a>
+        
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+        
+    </section>
+
 
     
     <section class="article-copyright">
@@ -379,6 +479,67 @@
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/posts/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Java集合框架：数据结构及常用操作一览</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/posts/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Java中的Optional类</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/posts/spring-data-jpa-%E7%9A%84jparepository/spring-data-jpa-%E7%9A%84jparepository/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Spring Data JPA 的JpaRepository</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/posts/spring-mvc-%E4%B8%AD%E7%9A%84model/spring-mvc-%E4%B8%AD%E7%9A%84model/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Spring MVC 中的Model</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     

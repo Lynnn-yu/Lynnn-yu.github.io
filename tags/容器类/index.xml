@@ -8,10 +8,10 @@
         <language>en</language>
         <copyright>Lynn</copyright><atom:link href="https://lynnn-yu.github.io/tags/%E5%AE%B9%E5%99%A8%E7%B1%BB/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Java中的Optional类</title>
-        <link>https://lynnn-yu.github.io/posts/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/</link>
+        <link>https://lynnn-yu.github.io/posts/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://lynnn-yu.github.io/posts/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/</guid>
+        <guid>https://lynnn-yu.github.io/posts/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/</guid>
         <description>&lt;p&gt;&lt;code&gt;Optional&amp;lt;T&amp;gt;&lt;/code&gt; 是 Java 8 引入的一个容器类，用来解决 &lt;code&gt;null&lt;/code&gt; 引用的问题。它可以包含或不包含一个非空值。&lt;code&gt;Optional&lt;/code&gt; 主要用于避免 &lt;code&gt;NullPointerException&lt;/code&gt;，使代码更加安全和可读。&lt;/p&gt;
 &lt;h3 id=&#34;创建-optional-对象&#34;&gt;创建 Optional 对象
 &lt;/h3&gt;&lt;p&gt;有几种方式可以创建一个 &lt;code&gt;Optional&lt;/code&gt; 对象：&lt;/p&gt;
