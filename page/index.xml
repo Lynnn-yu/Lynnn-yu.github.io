@@ -7,41 +7,13 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Lynn</copyright>
-        <lastBuildDate>Fri, 09 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://lynnn-yu.github.io/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://lynnn-yu.github.io/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Archives</title>
         <link>https://lynnn-yu.github.io/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
         <guid>https://lynnn-yu.github.io/archives/</guid>
         <description></description>
-        </item>
-        <item>
-        <title>About</title>
-        <link>https://lynnn-yu.github.io/about/</link>
-        <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
-        
-        <guid>https://lynnn-yu.github.io/about/</guid>
-        <description>&lt;p&gt;Written in Go, Hugo is an open source static site generator available under the &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio/hugo/blob/master/LICENSE&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Apache License 2.0.&lt;/a&gt; Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.&lt;/p&gt;
-&lt;p&gt;Hugo makes use of a variety of open source projects including:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/yuin/goldmark&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/yuin/goldmark&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/alecthomas/chroma&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/alecthomas/chroma&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/muesli/smartcrop&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/muesli/smartcrop&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/spf13/cobra&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/spf13/cobra&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/spf13/viper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/spf13/viper&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.&lt;/p&gt;
-&lt;p&gt;Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.&lt;/p&gt;
-&lt;p&gt;Websites built with Hugo are extremely fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.&lt;/p&gt;
-&lt;p&gt;Learn more and contribute on &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-</description>
         </item>
         <item>
         <title>Links</title>
@@ -85,6 +57,28 @@
         
         <guid>https://lynnn-yu.github.io/search/</guid>
         <description></description>
+        </item>
+        <item>
+        <title>关于我</title>
+        <link>https://lynnn-yu.github.io/%E5%85%B3%E4%BA%8E%E6%88%91/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://lynnn-yu.github.io/%E5%85%B3%E4%BA%8E%E6%88%91/</guid>
+        <description>&lt;h1 id=&#34;关于我&#34;&gt;关于我
+&lt;/h1&gt;&lt;p&gt;你好！我是 &lt;strong&gt;Lynn&lt;/strong&gt;，一个热爱技术与分享的博主。在这里，我记录我的学习与生活点滴，希望能与更多志同道合的朋友交流和探讨。&lt;/p&gt;
+&lt;h2 id=&#34;我的兴趣&#34;&gt;我的兴趣
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;编程与技术&lt;/strong&gt;：我对后端开发、前端设计、知识图谱、大语言模型以及其他技术充满兴趣。喜欢尝试新技术，并将我的学习成果记录下来。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;写作与分享&lt;/strong&gt;：通过写作分享自己的知识、经验和想法是我的快乐源泉。我相信，分享能帮助更多的人，同时也是自我提升的好方式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;读书与旅行&lt;/strong&gt;：除了技术，我也喜欢读书和旅行。书籍让我开拓视野，旅行让我感受不同的文化与生活方式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;联系方式&#34;&gt;联系方式
+&lt;/h2&gt;&lt;p&gt;如果你有任何问题，或者想与我探讨相关话题，欢迎通过以下方式与我联系：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;邮箱&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;mailto:wanglingyunj@163.com&#34; &gt;wanglingyunj@163.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;期待与你的交流，愿我们都能在知识的海洋中互相帮助、共同进步！&lt;/p&gt;
+</description>
         </item>
         
     </channel>
