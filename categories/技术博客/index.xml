@@ -21,7 +21,7 @@
         <pubDate>Fri, 20 Sep 2024 20:15:06 +0800</pubDate>
         
         <guid>https://lynnn-yu.github.io/p/spring-mvc-%E4%B8%AD%E7%9A%84model/</guid>
-        <description>Spring MVC中，Model实现控制器与视图的数据传递与绑定。</description>
+        <description>&lt;img src="https://lynnn-yu.github.io/%E5%9B%BE.jpg" alt="Featured image of post Spring MVC 中的Model" /&gt;Spring MVC中，Model实现控制器与视图的数据传递与绑定。</description>
         </item>
         <item>
         <title>Java中的Optional类</title>
@@ -29,7 +29,7 @@
         <pubDate>Fri, 20 Sep 2024 17:15:06 +0800</pubDate>
         
         <guid>https://lynnn-yu.github.io/p/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/</guid>
-        <description>Optional&lt;T&gt; 是 Java 8 引入的一个容器类，用来解决 &lt;code&gt;null&lt;/code&gt; 引用的问题。它可以包含或不包含一个非空值。</description>
+        <description>&lt;img src="https://lynnn-yu.github.io/%E5%9B%BE.jpg" alt="Featured image of post Java中的Optional类" /&gt;Optional&lt;T&gt; 是 Java 8 引入的一个容器类，用来解决 &lt;code&gt;null&lt;/code&gt; 引用的问题。它可以包含或不包含一个非空值。</description>
         </item>
         <item>
         <title>Spring Data JPA 的JpaRepository</title>
@@ -37,7 +37,7 @@
         <pubDate>Fri, 20 Sep 2024 16:15:06 +0800</pubDate>
         
         <guid>https://lynnn-yu.github.io/p/spring-data-jpa-%E7%9A%84jparepository/</guid>
-        <description>&lt;code&gt;JpaRepository&lt;/code&gt; 是 Spring Data JPA 中的一个接口，提供了对数据库实体进行CRUD（Create, Read, Update, Delete）操作的常用方法。</description>
+        <description>&lt;img src="https://lynnn-yu.github.io/%E5%9B%BE.jpg" alt="Featured image of post Spring Data JPA 的JpaRepository" /&gt;&lt;code&gt;JpaRepository&lt;/code&gt; 是 Spring Data JPA 中的一个接口，提供了对数据库实体进行CRUD（Create, Read, Update, Delete）操作的常用方法。</description>
         </item>
         <item>
         <title>Floyd 判圈算法</title>
