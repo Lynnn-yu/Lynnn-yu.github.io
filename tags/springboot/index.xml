@@ -13,7 +13,9 @@
         <pubDate>Fri, 20 Sep 2024 20:15:06 +0800</pubDate>
         
         <guid>https://lynnn-yu.github.io/p/spring-mvc-%E4%B8%AD%E7%9A%84model/</guid>
-        <description>Spring MVC中，Model实现控制器与视图的数据传递与绑定。</description>
+        <description>
+            
+            Spring MVC中，Model实现控制器与视图的数据传递与绑定。</description> 
         </item>
         <item>
         <title>Spring Data JPA 的JpaRepository</title>
@@ -21,7 +23,9 @@
         <pubDate>Fri, 20 Sep 2024 16:15:06 +0800</pubDate>
         
         <guid>https://lynnn-yu.github.io/p/spring-data-jpa-%E7%9A%84jparepository/</guid>
-        <description>&lt;code&gt;JpaRepository&lt;/code&gt; 是 Spring Data JPA 中的一个接口，提供了对数据库实体进行CRUD（Create, Read, Update, Delete）操作的常用方法。</description>
+        <description>
+            
+            &lt;code&gt;JpaRepository&lt;/code&gt; 是 Spring Data JPA 中的一个接口，提供了对数据库实体进行CRUD（Create, Read, Update, Delete）操作的常用方法。</description> 
         </item>
         
     </channel>
