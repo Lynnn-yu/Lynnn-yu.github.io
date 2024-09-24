@@ -8,10 +8,10 @@
         <language>en</language>
         <copyright>Lynn</copyright><atom:link href="https://lynnn-yu.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Floyd 判圈算法</title>
-        <link>https://lynnn-yu.github.io/posts/floyd-algorithm/floyd-algorithm/</link>
+        <link>https://lynnn-yu.github.io/p/floyd-%E5%88%A4%E5%9C%88%E7%AE%97%E6%B3%95/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://lynnn-yu.github.io/posts/floyd-algorithm/floyd-algorithm/</guid>
+        <guid>https://lynnn-yu.github.io/p/floyd-%E5%88%A4%E5%9C%88%E7%AE%97%E6%B3%95/</guid>
         <description>&lt;h1 id=&#34;floyd-判圈算法floyds-cycle-detection-algorithm&#34;&gt;Floyd 判圈算法（Floyd’s Cycle Detection Algorithm）
 &lt;/h1&gt;&lt;h2 id=&#34;什么是-floyd-判圈算法&#34;&gt;什么是 Floyd 判圈算法？
 &lt;/h2&gt;&lt;p&gt;Floyd 判圈算法，也叫 &lt;strong&gt;龟兔赛跑算法&lt;/strong&gt;（Tortoise and Hare Algorithm），是一种用于检测链表中是否存在环的算法。该算法由 Robert W. Floyd 提出，旨在通过两个不同速度的指针遍历链表来判断链表是否存在循环。其时间复杂度为 O(n)，空间复杂度为 O(1)，因此在效率和资源占用方面非常优越。&lt;/p&gt;
@@ -100,10 +100,10 @@
         </item>
         <item>
         <title>Java集合框架：数据结构及常用操作一览</title>
-        <link>https://lynnn-yu.github.io/posts/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</link>
+        <link>https://lynnn-yu.github.io/p/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E4%B8%80%E8%A7%88/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://lynnn-yu.github.io/posts/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</guid>
+        <guid>https://lynnn-yu.github.io/p/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E4%B8%80%E8%A7%88/</guid>
         <description>&lt;h2 id=&#34;核心接口&#34;&gt;核心接口
 &lt;/h2&gt;&lt;h3 id=&#34;一-collection&#34;&gt;一、 Collection
 &lt;/h3&gt;&lt;ul&gt;
