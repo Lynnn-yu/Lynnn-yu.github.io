@@ -13,9 +13,7 @@
         <pubDate>Fri, 20 Sep 2024 16:15:06 +0800</pubDate>
         
         <guid>https://lynnn-yu.github.io/%E5%85%B3%E4%BA%8E%E6%88%91/</guid>
-        <description>
-            
-            &lt;h1 id=&#34;关于我&#34;&gt;关于我
+        <description>&lt;h1 id=&#34;关于我&#34;&gt;关于我
 &lt;/h1&gt;&lt;p&gt;你好！我是 &lt;strong&gt;Lynn&lt;/strong&gt;，一个热爱技术与分享的博主。在这里，我记录我的学习与生活点滴，希望能与更多志同道合的朋友交流和探讨。&lt;/p&gt;
 &lt;h2 id=&#34;我的兴趣&#34;&gt;我的兴趣
 &lt;/h2&gt;&lt;ul&gt;
@@ -28,7 +26,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;邮箱&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;mailto:wanglingyunj@163.com&#34; &gt;wanglingyunj@163.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;期待与你的交流，愿我们都能在知识的海洋中互相帮助、共同进步！&lt;/p&gt;</description> 
+&lt;p&gt;期待与你的交流，愿我们都能在知识的海洋中互相帮助、共同进步！&lt;/p&gt;</description>
         </item>
         <item>
         <title>Archives</title>
@@ -36,9 +34,7 @@
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
         <guid>https://lynnn-yu.github.io/archives/</guid>
-        <description>
-            
-            </description> 
+        <description></description>
         </item>
         <item>
         <title>Search</title>
@@ -46,9 +42,7 @@
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://lynnn-yu.github.io/search/</guid>
-        <description>
-            
-            </description> 
+        <description></description>
         </item>
         
     </channel>

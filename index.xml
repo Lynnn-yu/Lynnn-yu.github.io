@@ -13,9 +13,7 @@
         <pubDate>Sun, 22 Sep 2024 16:15:06 +0800</pubDate>
         
         <guid>https://lynnn-yu.github.io/p/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E4%B8%80%E8%A7%88/</guid>
-        <description>
-            
-            Java 集合框架提供了一套综合的接口和类，用于表示和操作数据组，使得数据集的操作更加直观和统一。这个框架包括集合、列表、队列、映射等多种数据结构，每种都有其特定的用途和优化。</description> 
+        <description>&lt;img src="https://lynnn-yu.github.io/%E5%9B%BE.jpg" alt="Featured image of post Java集合框架：数据结构及常用操作一览" /&gt;Java 集合框架提供了一套综合的接口和类，用于表示和操作数据组，使得数据集的操作更加直观和统一。这个框架包括集合、列表、队列、映射等多种数据结构，每种都有其特定的用途和优化。</description>
         </item>
         <item>
         <title>Spring MVC 中的Model</title>
@@ -23,9 +21,7 @@
         <pubDate>Fri, 20 Sep 2024 20:15:06 +0800</pubDate>
         
         <guid>https://lynnn-yu.github.io/p/spring-mvc-%E4%B8%AD%E7%9A%84model/</guid>
-        <description>
-            
-            Spring MVC中，Model实现控制器与视图的数据传递与绑定。</description> 
+        <description>Spring MVC中，Model实现控制器与视图的数据传递与绑定。</description>
         </item>
         <item>
         <title>Java中的Optional类</title>
@@ -33,9 +29,7 @@
         <pubDate>Fri, 20 Sep 2024 17:15:06 +0800</pubDate>
         
         <guid>https://lynnn-yu.github.io/p/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/</guid>
-        <description>
-            
-            Optional&lt;T&gt; 是 Java 8 引入的一个容器类，用来解决 &lt;code&gt;null&lt;/code&gt; 引用的问题。它可以包含或不包含一个非空值。</description> 
+        <description>Optional&lt;T&gt; 是 Java 8 引入的一个容器类，用来解决 &lt;code&gt;null&lt;/code&gt; 引用的问题。它可以包含或不包含一个非空值。</description>
         </item>
         <item>
         <title>Spring Data JPA 的JpaRepository</title>
@@ -43,9 +37,7 @@
         <pubDate>Fri, 20 Sep 2024 16:15:06 +0800</pubDate>
         
         <guid>https://lynnn-yu.github.io/p/spring-data-jpa-%E7%9A%84jparepository/</guid>
-        <description>
-            
-            &lt;code&gt;JpaRepository&lt;/code&gt; 是 Spring Data JPA 中的一个接口，提供了对数据库实体进行CRUD（Create, Read, Update, Delete）操作的常用方法。</description> 
+        <description>&lt;code&gt;JpaRepository&lt;/code&gt; 是 Spring Data JPA 中的一个接口，提供了对数据库实体进行CRUD（Create, Read, Update, Delete）操作的常用方法。</description>
         </item>
         <item>
         <title>关于我</title>
@@ -53,9 +45,7 @@
         <pubDate>Fri, 20 Sep 2024 16:15:06 +0800</pubDate>
         
         <guid>https://lynnn-yu.github.io/%E5%85%B3%E4%BA%8E%E6%88%91/</guid>
-        <description>
-            
-            &lt;h1 id=&#34;关于我&#34;&gt;关于我
+        <description>&lt;h1 id=&#34;关于我&#34;&gt;关于我
 &lt;/h1&gt;&lt;p&gt;你好！我是 &lt;strong&gt;Lynn&lt;/strong&gt;，一个热爱技术与分享的博主。在这里，我记录我的学习与生活点滴，希望能与更多志同道合的朋友交流和探讨。&lt;/p&gt;
 &lt;h2 id=&#34;我的兴趣&#34;&gt;我的兴趣
 &lt;/h2&gt;&lt;ul&gt;
@@ -68,7 +58,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;邮箱&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;mailto:wanglingyunj@163.com&#34; &gt;wanglingyunj@163.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;期待与你的交流，愿我们都能在知识的海洋中互相帮助、共同进步！&lt;/p&gt;</description> 
+&lt;p&gt;期待与你的交流，愿我们都能在知识的海洋中互相帮助、共同进步！&lt;/p&gt;</description>
         </item>
         <item>
         <title>Floyd 判圈算法</title>
@@ -76,9 +66,7 @@
         <pubDate>Fri, 20 Sep 2024 14:15:06 +0800</pubDate>
         
         <guid>https://lynnn-yu.github.io/p/floyd-%E5%88%A4%E5%9C%88%E7%AE%97%E6%B3%95/</guid>
-        <description>
-            
-            本文介绍了 Floyd 判圈算法的原理和应用，并结合代码示例讲解了如何通过该算法检测链表中的环。</description> 
+        <description>&lt;img src="https://lynnn-yu.github.io/%E5%9B%BE.jpg" alt="Featured image of post Floyd 判圈算法" /&gt;本文介绍了 Floyd 判圈算法的原理和应用，并结合代码示例讲解了如何通过该算法检测链表中的环。</description>
         </item>
         <item>
         <title>Archives</title>
@@ -86,9 +74,7 @@
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
         <guid>https://lynnn-yu.github.io/archives/</guid>
-        <description>
-            
-            </description> 
+        <description></description>
         </item>
         <item>
         <title>Search</title>
@@ -96,9 +82,7 @@
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://lynnn-yu.github.io/search/</guid>
-        <description>
-            
-            </description> 
+        <description></description>
         </item>
         
     </channel>
