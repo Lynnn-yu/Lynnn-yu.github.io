@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title type="text">Lynn&#39;s Blog</title>
     <subtitle type="html">Lynn&#39;s Blog</subtitle>
-    <updated>2024-09-24T06:41:28&#43;00:00</updated>
+    <updated>2024-09-24T06:44:59&#43;00:00</updated>
     <id>https://lynnn-yu.github.io/</id>
     <link rel="alternate" type="text/html" href="https://lynnn-yu.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://lynnn-yu.github.io/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">Floyd 判圈算法</title>
             <link rel="alternate" type="text/html" href="https://lynnn-yu.github.io/posts/floyd-algorithm/" />
             <id>https://lynnn-yu.github.io/posts/floyd-algorithm/</id>
-            <updated>2024-09-24T06:41:25&#43;00:00</updated>
+            <updated>2024-09-24T06:44:57&#43;00:00</updated>
             <published>0001-01-01T00:00:00&#43;00:00</published>
             <author>
                     <name>Lynn</name>
@@ -159,7 +159,7 @@
             <title type="text">Java中的Optional类</title>
             <link rel="alternate" type="text/html" href="https://lynnn-yu.github.io/posts/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/" />
             <id>https://lynnn-yu.github.io/posts/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/</id>
-            <updated>2024-09-24T06:41:25&#43;00:00</updated>
+            <updated>2024-09-24T06:44:57&#43;00:00</updated>
             <published>0001-01-01T00:00:00&#43;00:00</published>
             <author>
                     <name>Lynn</name>
@@ -414,7 +414,7 @@
             <title type="text">Java集合框架：数据结构及常用操作一览</title>
             <link rel="alternate" type="text/html" href="https://lynnn-yu.github.io/posts/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/" />
             <id>https://lynnn-yu.github.io/posts/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</id>
-            <updated>2024-09-24T06:41:25&#43;00:00</updated>
+            <updated>2024-09-24T06:44:57&#43;00:00</updated>
             <published>0001-01-01T00:00:00&#43;00:00</published>
             <author>
                     <name>Lynn</name>
@@ -423,8 +423,8 @@
                     </author>
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">Java 集合框架提供了一套综合的接口和类，用于表示和操作数据组，使得数据集的操作更加直观和统一。这个框架包括集合、列表、队列、映射等多种数据结构，每种都有其特定的用途和优化。</summary>
             
-                <content type="html">&lt;h1 id=&#34;核心接口&#34;&gt;核心接口&lt;/h1&gt;
-&lt;h2 id=&#34;一-collection&#34;&gt;一、 Collection&lt;/h2&gt;
+                <content type="html">&lt;h2 id=&#34;核心接口&#34;&gt;核心接口&lt;/h2&gt;
+&lt;h3 id=&#34;一-collection&#34;&gt;一、 Collection&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;关键方法&lt;/strong&gt;:&lt;/p&gt;
@@ -452,7 +452,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;1-list&#34;&gt;1. List&lt;/h3&gt;
+&lt;h4 id=&#34;1-list&#34;&gt;1. List&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;概述&lt;/strong&gt;: &lt;code&gt;List&lt;/code&gt; 接口扩展自 &lt;code&gt;Collection&lt;/code&gt; 接口，表示有序的集合。它允许重复的元素并且可以精确控制每个元素的位置。&lt;/p&gt;
@@ -482,7 +482,7 @@
 &lt;p&gt;&lt;strong&gt;主要实现&lt;/strong&gt;: &lt;code&gt;ArrayList&lt;/code&gt;, &lt;code&gt;LinkedList&lt;/code&gt;, &lt;code&gt;Vector&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;2-set&#34;&gt;2. Set&lt;/h3&gt;
+&lt;h4 id=&#34;2-set&#34;&gt;2. Set&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;概述&lt;/strong&gt;: &lt;code&gt;Set&lt;/code&gt; 接口也是扩展自 &lt;code&gt;Collection&lt;/code&gt;，代表没有重复元素的集合。&lt;/p&gt;
@@ -499,7 +499,7 @@
 &lt;p&gt;&lt;strong&gt;主要实现&lt;/strong&gt;: &lt;code&gt;HashSet&lt;/code&gt;, &lt;code&gt;LinkedHashSet&lt;/code&gt;, &lt;code&gt;TreeSet&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;3-queue&#34;&gt;3. Queue&lt;/h3&gt;
+&lt;h4 id=&#34;3-queue&#34;&gt;3. Queue&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;概述&lt;/strong&gt;: &lt;code&gt;Queue&lt;/code&gt; 接口扩展自 &lt;code&gt;Collection&lt;/code&gt; 用于存储一组元素，元素的添加和移除遵循特定的顺序，比如先进先出（FIFO）。&lt;/p&gt;
@@ -525,7 +525,7 @@
 &lt;p&gt;&lt;strong&gt;主要实现&lt;/strong&gt;: &lt;code&gt;LinkedList&lt;/code&gt;, &lt;code&gt;PriorityQueue&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;二-map&#34;&gt;二、 Map&lt;/h2&gt;
+&lt;h3 id=&#34;二-map&#34;&gt;二、 Map&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;概述&lt;/strong&gt;: &lt;code&gt;Map&lt;/code&gt; 不是 &lt;code&gt;Collection&lt;/code&gt; 接口的一部分，它表示键值对的映射。每个键最多只能映射到一个值。&lt;/p&gt;
@@ -568,7 +568,7 @@
 &lt;p&gt;&lt;strong&gt;主要实现&lt;/strong&gt;: &lt;code&gt;HashMap&lt;/code&gt;, &lt;code&gt;TreeMap&lt;/code&gt;, &lt;code&gt;LinkedHashMap&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;数据结构&#34;&gt;数据结构&lt;/h1&gt;
+&lt;h2 id=&#34;数据结构&#34;&gt;数据结构&lt;/h2&gt;
 &lt;h3 id=&#34;1-数组-array&#34;&gt;1. 数组 (Array)&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1236,7 +1236,7 @@
             <title type="text">Spring Data JPA 的JpaRepository</title>
             <link rel="alternate" type="text/html" href="https://lynnn-yu.github.io/posts/spring-data-jpa-%E7%9A%84jparepository/" />
             <id>https://lynnn-yu.github.io/posts/spring-data-jpa-%E7%9A%84jparepository/</id>
-            <updated>2024-09-24T06:41:25&#43;00:00</updated>
+            <updated>2024-09-24T06:44:57&#43;00:00</updated>
             <published>0001-01-01T00:00:00&#43;00:00</published>
             <author>
                     <name>Lynn</name>
@@ -1460,7 +1460,7 @@
             <title type="text">Spring MVC 中的Model</title>
             <link rel="alternate" type="text/html" href="https://lynnn-yu.github.io/posts/spring-mvc-%E4%B8%AD%E7%9A%84model/" />
             <id>https://lynnn-yu.github.io/posts/spring-mvc-%E4%B8%AD%E7%9A%84model/</id>
-            <updated>2024-09-24T06:41:25&#43;00:00</updated>
+            <updated>2024-09-24T06:44:57&#43;00:00</updated>
             <published>0001-01-01T00:00:00&#43;00:00</published>
             <author>
                     <name>Lynn</name>

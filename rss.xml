@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</copyright>
         
-        <lastBuildDate>Tue, 24 Sep 2024 06:41:28 &#43;0000</lastBuildDate>
+        <lastBuildDate>Tue, 24 Sep 2024 06:44:59 &#43;0000</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://lynnn-yu.github.io/rss.xml" />
         
@@ -426,8 +426,8 @@
                 
                 <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</copyright>
                 
-                    <description>&lt;h1 id=&#34;核心接口&#34;&gt;核心接口&lt;/h1&gt;
-&lt;h2 id=&#34;一-collection&#34;&gt;一、 Collection&lt;/h2&gt;
+                    <description>&lt;h2 id=&#34;核心接口&#34;&gt;核心接口&lt;/h2&gt;
+&lt;h3 id=&#34;一-collection&#34;&gt;一、 Collection&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;关键方法&lt;/strong&gt;:&lt;/p&gt;
@@ -455,7 +455,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;1-list&#34;&gt;1. List&lt;/h3&gt;
+&lt;h4 id=&#34;1-list&#34;&gt;1. List&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;概述&lt;/strong&gt;: &lt;code&gt;List&lt;/code&gt; 接口扩展自 &lt;code&gt;Collection&lt;/code&gt; 接口，表示有序的集合。它允许重复的元素并且可以精确控制每个元素的位置。&lt;/p&gt;
@@ -485,7 +485,7 @@
 &lt;p&gt;&lt;strong&gt;主要实现&lt;/strong&gt;: &lt;code&gt;ArrayList&lt;/code&gt;, &lt;code&gt;LinkedList&lt;/code&gt;, &lt;code&gt;Vector&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;2-set&#34;&gt;2. Set&lt;/h3&gt;
+&lt;h4 id=&#34;2-set&#34;&gt;2. Set&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;概述&lt;/strong&gt;: &lt;code&gt;Set&lt;/code&gt; 接口也是扩展自 &lt;code&gt;Collection&lt;/code&gt;，代表没有重复元素的集合。&lt;/p&gt;
@@ -502,7 +502,7 @@
 &lt;p&gt;&lt;strong&gt;主要实现&lt;/strong&gt;: &lt;code&gt;HashSet&lt;/code&gt;, &lt;code&gt;LinkedHashSet&lt;/code&gt;, &lt;code&gt;TreeSet&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;3-queue&#34;&gt;3. Queue&lt;/h3&gt;
+&lt;h4 id=&#34;3-queue&#34;&gt;3. Queue&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;概述&lt;/strong&gt;: &lt;code&gt;Queue&lt;/code&gt; 接口扩展自 &lt;code&gt;Collection&lt;/code&gt; 用于存储一组元素，元素的添加和移除遵循特定的顺序，比如先进先出（FIFO）。&lt;/p&gt;
@@ -528,7 +528,7 @@
 &lt;p&gt;&lt;strong&gt;主要实现&lt;/strong&gt;: &lt;code&gt;LinkedList&lt;/code&gt;, &lt;code&gt;PriorityQueue&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;二-map&#34;&gt;二、 Map&lt;/h2&gt;
+&lt;h3 id=&#34;二-map&#34;&gt;二、 Map&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;概述&lt;/strong&gt;: &lt;code&gt;Map&lt;/code&gt; 不是 &lt;code&gt;Collection&lt;/code&gt; 接口的一部分，它表示键值对的映射。每个键最多只能映射到一个值。&lt;/p&gt;
@@ -571,7 +571,7 @@
 &lt;p&gt;&lt;strong&gt;主要实现&lt;/strong&gt;: &lt;code&gt;HashMap&lt;/code&gt;, &lt;code&gt;TreeMap&lt;/code&gt;, &lt;code&gt;LinkedHashMap&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;数据结构&#34;&gt;数据结构&lt;/h1&gt;
+&lt;h2 id=&#34;数据结构&#34;&gt;数据结构&lt;/h2&gt;
 &lt;h3 id=&#34;1-数组-array&#34;&gt;1. 数组 (Array)&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
