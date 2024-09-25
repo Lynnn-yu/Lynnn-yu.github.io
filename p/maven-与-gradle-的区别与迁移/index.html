@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Maven 与 Gradle 的区别与迁移">
+<title>Maven 与 Gradle 的区别与迁移</title>
+
+<link rel='canonical' href='https://lynnn-yu.github.io/p/maven-%E4%B8%8E-gradle-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%BF%81%E7%A7%BB/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Maven 与 Gradle 的区别与迁移">
+<meta property='og:description' content="Maven 与 Gradle 的区别与迁移">
+<meta property='og:url' content='https://lynnn-yu.github.io/p/maven-%E4%B8%8E-gradle-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%BF%81%E7%A7%BB/'>
+<meta property='og:site_name' content='Lynn&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Maven ' /><meta property='article:tag' content='Gradle' /><meta property='article:tag' content='构建工具' /><meta property='article:published_time' content='2024-09-25T18:44:57&#43;08:00'/><meta property='article:modified_time' content='2024-09-25T18:44:57&#43;08:00'/><meta property='og:image' content='https://lynnn-yu.github.io/%E5%9B%BE.jpg' />
+<meta name="twitter:title" content="Maven 与 Gradle 的区别与迁移">
+<meta name="twitter:description" content="Maven 与 Gradle 的区别与迁移"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://lynnn-yu.github.io/%E5%9B%BE.jpg' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu17448351434459958630.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Lynn&#39;s Blog</a></h1>
+            <h2 class="site-description">Record My Tiny World.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Lynnn-yu'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E%E6%88%91/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://lynnn-yu.github.io/" selected>English</option>
+                                
+                                    <option value="https://lynnn-yu.github.io/zh-cn/" >中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#maven-与-gradle-的区别">Maven 与 Gradle 的区别</a>
+      <ol>
+        <li><a href="#1-maven-与-gradle-对比">1. Maven 与 Gradle 对比</a></li>
+        <li><a href="#2-构建流程和生命周期">2. 构建流程和生命周期</a></li>
+        <li><a href="#3-包管理和传递性依赖">3. 包管理和传递性依赖</a></li>
+      </ol>
+    </li>
+    <li><a href="#从maven迁移到gradle"><strong>从maven迁移到gradle</strong></a>
+      <ol>
+        <li><a href="#自动转换"><strong>自动转换</strong></a></li>
+        <li><a href="#转换依赖"><strong>转换依赖</strong></a></li>
+        <li><a href="#转换repositories仓库"><strong>转换repositories仓库</strong></a></li>
+        <li><a href="#控制依赖的版本"><strong>控制依赖的版本</strong></a></li>
+        <li><a href="#多模块项目"><strong>多模块项目</strong></a></li>
+        <li><a href="#profile和属性"><strong>profile和属性</strong></a></li>
+        <li><a href="#资源处理"><strong>资源处理</strong></a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/maven-%E4%B8%8E-gradle-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%BF%81%E7%A7%BB/">
+                
+                    <img src="/%e5%9b%be.jpg" loading="lazy" alt="Featured image of post Maven 与 Gradle 的区别与迁移" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/" style="background-color: #F9A7AB; color: #fff;">
+                技术博客
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/maven-%E4%B8%8E-gradle-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%BF%81%E7%A7%BB/">Maven 与 Gradle 的区别与迁移</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Maven 与 Gradle 的区别与迁移
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024/09/25 18:44:57</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="maven-与-gradle-的区别">Maven 与 Gradle 的区别
+</h2><p>Java 世界中主要有三大构建工具：Ant、Maven 和 Gradle。经过几年的发展，Ant 几乎销声匿迹、Maven 也日薄西山，而 Gradle 的发展则如日中天。Maven 的主要功能主要分为 5 点，分别是依赖管理系统、多模块构建、一致的项目结构、一致的构建模型和插件机制。Maven 与 Gradle 在使用中各有千秋，根据使用场景择优用之。</p>
+<h3 id="1-maven-与-gradle-对比">1. Maven 与 Gradle 对比
+</h3><p>maven 要引入依赖 pom.xml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web --&gt;
+</span></span><span class="line"><span class="cl">&lt;dependency&gt;
+</span></span><span class="line"><span class="cl">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+</span></span><span class="line"><span class="cl">    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+</span></span><span class="line"><span class="cl">    &lt;version&gt;2.1.5.RELEASE&lt;/version&gt;
+</span></span><span class="line"><span class="cl">&lt;/dependency&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而 Gradle 引入 build.gradle</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">implementation &#39;org.springframework.boot:spring-boot-starter-web&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>优点: Gradle 相当于 Maven 与 Ant 的合体
+缺点：对于微服务多项目的子类引用，不如 Maven</p>
+<p>Maven</p>
+<ul>
+<li>项目结构 / 依赖由 pom.xml 定义</li>
+<li>生产代码存放在 src/main/java 下</li>
+<li>测试代码存放在 src/test/java 下</li>
+</ul>
+<p>Gradle</p>
+<ul>
+<li>项目结构 / 依赖由 build.gradle 定义</li>
+<li>生产代码存放在 src/main/java 下</li>
+<li>测试代码存放在 src/test/java 下</li>
+</ul>
+<h3 id="2-构建流程和生命周期">2. 构建流程和生命周期
+</h3><ul>
+<li>Maven
+<ul>
+<li>三个标准的生命周期 (lifecycle)</li>
+<li>最小的运行单元是目标 (goal)</li>
+<li>插件可以把自己的目标绑定在生命周期的某个阶段 (phase) 上</li>
+</ul>
+</li>
+<li>Gradle
+<ul>
+<li>没有显示的生命周期</li>
+<li>最小的运行单元是任务 (task)，任务之间可以相互依赖</li>
+<li>可以动态地创建任务</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-包管理和传递性依赖">3. 包管理和传递性依赖
+</h3><ul>
+<li>
+<p>Maven</p>
+<ul>
+<li>一个包由 groupId/artifactId/version 确定唯一坐标</li>
+<li>包来源于中央仓库</li>
+<li>传递性依赖
+<ul>
+<li>当某个包的的使用依赖于其他包时，Maven 会自动导入所有的依赖包</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Gradle</p>
+<ul>
+<li>
+<p>使用 Ivy 的构件系统，是 Maven 的构件系统的超集</p>
+<blockquote>
+<p>Ant ivy 是一个比 Maven 仓库更加广阔的仓库</p>
+</blockquote>
+</li>
+<li>
+<p>与 Maven 仓库兼容</p>
+</li>
+</ul>
+</li>
+<li>
+<p>当出现依赖冲突时</p>
+<ul>
+<li>Maven 依赖解调遵循两个原则，<strong>路径最近</strong>原则以及<strong>定义顺序</strong>原则</li>
+</ul>
+<p><img src="/up-981b4f8bfc766b8cc478b6de580fb4b4.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p>Mavenc 依赖冲突.png</p>
+</li>
+<li>
+<p>Gradle 的冲突解析则是选用<strong>新的版本</strong> (新的版本一般都会向下兼容)</p>
+</li>
+</ul>
+<p>总结：</p>
+<p>Maven</p>
+<ul>
+<li>稳定可靠，插件众多。(这么多年版本一直维持在 3.XX，而且很久才发布一次小更新，说明他稳定且 bug 较少)</li>
+</ul>
+<p><img src="/up-2aee9dfdfe6bad6c11f1ec0b15c85d4d.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<ul>
+<li>略显啰嗦，自定义逻辑较麻烦 (Maven 使用 xml 的方式进行配置，xml 的劣势繁琐就会体现在 Maven 上)</li>
+</ul>
+<p><img src="/up-7942de7f32da9512c13374f50d3330e6.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<ul>
+<li>
+<p>大型项目会逐渐遇到性能问题</p>
+<ul>
+<li>使用 Maven 构建的项目都会经过几个生命流程，内部没有缓存机制，项目越来越大重新构建所花费的时间也就越长。</li>
+</ul>
+</li>
+<li>
+<p>由于 Maven 的开发基本靠社区支持，没有更多的资金用于继续开发维护 Maven，导致开发基本停泻。</p>
+</li>
+<li>
+<p>Gradle</p>
+<ul>
+<li>Gradle 采用代码逻辑的方式进行构建，使得它能更加的灵活。</li>
+</ul>
+</li>
+<li>
+<p>Gradle 内部存在缓存机制 (当文件输入和输出都没改变的情况下，认为这就是没变的代码，直接进行输出。但当你改变的依赖包版本，它有时并没更新，也是缓存机制的问题)，相比会快些。</p>
+</li>
+<li>
+<p>开发活跃，版本太多</p>
+</li>
+</ul>
+<h2 id="从maven迁移到gradle"><strong>从maven迁移到gradle</strong>
+</h2><p>因为maven出现的时间比较早，所以基本上所有的java项目都支持maven，但是并不是所有的项目都支持gradle。如果你有需要把maven项目迁移到gradle的想法，那么就一起来看看吧。</p>
+<p>根据我们之前的介绍，大家可以发现gradle和maven从本质上来说就是不同的，gradle通过task的DAG图来组织任务，而maven则是通过attach到phases的goals来执行任务。</p>
+<p>虽然两者的构建有很大的不同，但是得益于gradle和maven相识的各种约定规则，从maven移植到gradle并不是那么难。</p>
+<p>要想从maven移植到gradle，首先要了解下maven的build生命周期，maven的生命周期包含了clean，compile，test，package，verify，install和deploy这几个phase。</p>
+<p>我们需要将maven的生命周期phase转换为gradle的生命周期task。这里需要使用到gradle的Base Plugin，Java Plugin和Maven Publish Plugin。</p>
+<p>先看下怎么引入这三个plugin：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plugins <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    id <span class="s1">&#39;base&#39;</span>
+</span></span><span class="line"><span class="cl">    id <span class="s1">&#39;java&#39;</span>
+</span></span><span class="line"><span class="cl">    id <span class="s1">&#39;maven-publish&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>clean会被转换成为clean task，compile会被转换成为classes task，test会被转换成为test task，package会被转换成为assemble task，verify 会被转换成为check task，install会被转换成为 Maven Publish Plugin 中的publishToMavenLocal task，deploy 会被转换成为Maven Publish Plugin 中的publish task。</p>
+<p>有了这些task之间的对应关系，我们就可以尝试进行maven到gradle的转换了。</p>
+<h3 id="自动转换"><strong>自动转换</strong>
+</h3><p>我们除了可以使用 gradle init 命令来创建一个gradle的架子之外，还可以使用这个命令来将maven项目转换成为gradle项目，gradle init命令会去读取pom文件，并将其转换成为gradle项目。</p>
+<h3 id="转换依赖"><strong>转换依赖</strong>
+</h3><p>gradle和maven的依赖都包含了group ID, artifact ID 和版本号。两者本质上是一样的，只是形式不同，我们看一个转换的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>log4j<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>log4j<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>1.2.12<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependencies&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上是一个maven的例子，我们看下gradle的例子怎写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dependencies <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    implementation <span class="s1">&#39;log4j:log4j:1.2.12&#39;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到gradle比maven写起来要简单很多。</p>
+<p>注意这里的implementation实际上是由 Java Plugin 来实现的。</p>
+<p>我们在maven的依赖中有时候还会用到scope选项，用来表示依赖的范围，我们看下这些范围该如何进行转换：</p>
+<ul>
+<li>compile：</li>
+</ul>
+<p>在gradle可以有两种配置来替换compile，我们可以使用implementation或者api。</p>
+<p>前者在任何使用Java Plugin的gradle中都可以使用，而api只能在使用Java Library Plugin的项目中使用。</p>
+<p>当然两者是有区别的，如果你是构建应用程序或者webapp，那么推荐使用implementation，如果你是在构建Java libraries，那么推荐使用api。</p>
+<ul>
+<li>runtime：</li>
+</ul>
+<p>可以替换成 runtimeOnly 。</p>
+<ul>
+<li>test：</li>
+</ul>
+<p>gradle中的test分为两种，一种是编译test项目的时候需要，那么可以使用testImplementation，一种是运行test项目的时候需要，那么可以使用testRuntimeOnly。</p>
+<ul>
+<li>provided：</li>
+</ul>
+<p>可以替换成为compileOnly。</p>
+<ul>
+<li>import：</li>
+</ul>
+<p>在maven中，import经常用在dependencyManagement中，通常用来从一个pom文件中导入依赖项，从而保证项目中依赖项目版本的一致性。</p>
+<p>在gradle中，可以使用 platform() 或者 enforcedPlatform() 来导入pom文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dependencies <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    implementation platform<span class="o">(</span><span class="s1">&#39;org.springframework.boot:spring-boot-dependencies:1.5.8.RELEASE&#39;</span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    implementation <span class="s1">&#39;com.google.code.gson:gson&#39;</span> 
+</span></span><span class="line"><span class="cl">    implementation <span class="s1">&#39;dom4j:dom4j&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>比如上面的例子中，我们导入了spring-boot-dependencies。因为这个pom中已经定义了依赖项的版本号，所以我们在后面引入gson的时候就不需要指定版本号了。</p>
+<p>platform和enforcedPlatform的区别在于，enforcedPlatform会将导入的pom版本号覆盖其他导入的版本号：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">dependencies</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// import a BOM. The versions used in this file will override any other version found in the graph
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">implementation</span> <span class="nx">enforcedPlatform</span><span class="p">(</span><span class="s1">&#39;org.springframework.boot:spring-boot-dependencies:1.5.8.RELEASE&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// define dependencies without versions
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">implementation</span> <span class="s1">&#39;com.google.code.gson:gson&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">implementation</span> <span class="s1">&#39;dom4j:dom4j&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// this version will be overridden by the one found in the BOM
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">implementation</span> <span class="s1">&#39;org.codehaus.groovy:groovy:1.8.6&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="转换repositories仓库"><strong>转换repositories仓库</strong>
+</h3><p>gradle可以兼容使用maven或者lvy的repository。gradle没有默认的仓库地址，所以你必须手动指定一个。</p>
+<p>你可以在gradle使用maven的仓库：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">repositories {
+</span></span><span class="line"><span class="cl">    mavenCentral()
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们还可以直接指定maven仓库的地址：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">repositories <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    maven <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        url <span class="s2">&#34;http://repo.mycompany.com/maven2&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果你想使用maven本地的仓库，则可以这样使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">repositories {
+</span></span><span class="line"><span class="cl">    mavenLocal()
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是mavenLocal是不推荐使用的，为什么呢？</p>
+<p>mavenLocal只是maven在本地的一个cache，它包含的内容并不完整。比如说一个本地的maven repository module可能只包含了jar包文件，并没有包含source或者javadoc文件。那么我们将不能够在gradle中查看这个module的源代码，因为gradle会首先在maven本地的路径中查找这个module。</p>
+<p>并且本地的repository是不可信任的，因为里面的内容可以轻易被修改，并没有任何的验证机制。</p>
+<h3 id="控制依赖的版本"><strong>控制依赖的版本</strong>
+</h3><p>如果同一个项目中对同一个模块有不同版本的两个依赖的话，默认情况下Gradle会在解析完DAG之后，选择版本最高的那个依赖包。</p>
+<p>但是这样做并不一定就是正确的， 所以我们需要自定义依赖版本的功能。</p>
+<p>首先就是上面我们提到的使用platform()和enforcedPlatform() 来导入BOM（packaging类型是POM的）文件。</p>
+<p>如果我们项目中依赖了某个module，而这个module又依赖了另外的module，我们叫做传递依赖。在这种情况下，如果我们希望控制传递依赖的版本，比如说将传递依赖的版本升级为一个新的版本，那么可以使用dependency constraints：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dependencies <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    implementation <span class="s1">&#39;org.apache.httpcomponents:httpclient&#39;</span>
+</span></span><span class="line"><span class="cl">    constraints <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        implementation<span class="o">(</span><span class="s1">&#39;org.apache.httpcomponents:httpclient:4.5.3&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            because <span class="s1">&#39;previous versions have a bug impacting this application&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        implementation<span class="o">(</span><span class="s1">&#39;commons-codec:commons-codec:1.11&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            because <span class="s1">&#39;version 1.9 pulled from httpclient has bugs affecting this application&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意，dependency constraints只对传递依赖有效，如果上面的例子中commons-codec并不是传递依赖，那么将不会有任何影响。</p>
+<p>同时 Dependency constraints需要Gradle Module Metadata的支持，也就是说只有你的module是发布在gradle中才支持这个特性，如果是发布在maven或者ivy中是不支持的。</p>
+<p>上面讲的是传递依赖的版本升级。同样是传递依赖，如果本项目也需要使用到这个传递依赖的module，但是需要使用到更低的版本（因为默认gradle会使用最新的版本），就需要用到版本降级了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dependencies <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    implementation <span class="s1">&#39;org.apache.httpcomponents:httpclient:4.5.4&#39;</span>
+</span></span><span class="line"><span class="cl">    implementation<span class="o">(</span><span class="s1">&#39;commons-codec:commons-codec&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        version <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            strictly <span class="s1">&#39;1.9&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以在implementation中指定特定的version即可。</p>
+<p>strictly表示的是强制匹配特定的版本号，除了strictly之外，还有require，表示需要的版本号大于等于给定的版本号。prefer，如果没有指定其他的版本号，那么就使用prefer这个。reject，拒绝使用这个版本。</p>
+<p>除此之外，你还可以使用Java Platform Plugin来指定特定的platform，从而限制版本号。</p>
+<p>最后看一下如何exclude一个依赖：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">implementation</span><span class="p">(</span><span class="err">&#39;</span><span class="n">commons</span><span class="p">-</span><span class="n">beanutils</span><span class="p">:</span><span class="n">commons</span><span class="p">-</span><span class="n">beanutils</span><span class="p">:</span><span class="m">1.9</span><span class="p">.</span><span class="m">4</span><span class="err">&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">exclude</span> <span class="k">group</span><span class="p">:</span> <span class="err">&#39;</span><span class="n">commons</span><span class="p">-</span><span class="n">collections</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="err">&#39;</span><span class="n">commons</span><span class="p">-</span><span class="n">collections</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="多模块项目"><strong>多模块项目</strong>
+</h3><p>maven中可以创建多模块项目：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;modules&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;module&gt;</span>simple-weather<span class="nt">&lt;/module&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;module&gt;</span>simple-webapp<span class="nt">&lt;/module&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/modules&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以在gradle中做同样的事情settings.gradle：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">rootProject</span><span class="o">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;simple-multi-module&#39;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">include</span> <span class="s1">&#39;simple-weather&#39;</span><span class="p">,</span> <span class="s1">&#39;simple-webapp&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="profile和属性"><strong>profile和属性</strong>
+</h3><p>maven中可以使用profile来区别不同的环境，在gradle中，我们可以定义好不同的profile文件，然后通过脚本来加载他们：</p>
+<p>build.gradle：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span>!hasProperty<span class="o">(</span><span class="s1">&#39;buildProfile&#39;</span><span class="o">))</span> ext.buildProfile <span class="o">=</span> <span class="s1">&#39;default&#39;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">apply from: <span class="s2">&#34;profile-</span><span class="si">${</span><span class="nv">buildProfile</span><span class="si">}</span><span class="s2">.gradle&#34;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">task greeting <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    doLast <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        println message  
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>profile-default.gradle：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ext.message <span class="o">=</span> <span class="s1">&#39;foobar&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>profile-test.gradle：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ext.message <span class="o">=</span> <span class="s1">&#39;testing 1 2 3&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以这样来运行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&gt; gradle greeting
+</span></span><span class="line"><span class="cl">foobar
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; gradle -PbuildProfile<span class="o">=</span><span class="nb">test</span> greeting
+</span></span><span class="line"><span class="cl">testing <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="资源处理"><strong>资源处理</strong>
+</h3><p>在maven中有一个process-resources阶段，可以执行resources:resources用来进行resource文件的拷贝操作。</p>
+<p>在Gradle中的Java plugin的processResources task也可以做相同的事情。</p>
+<p>比如我可以执行copy任务：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="n">task</span> <span class="n">copyReport</span><span class="p">(</span><span class="n">type</span><span class="p">:</span> <span class="n">Copy</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">from</span> <span class="n">file</span><span class="p">(</span><span class="s">&#34;buildDir/reports/my-report.pdf&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">into</span> <span class="n">file</span><span class="p">(</span><span class="s">&#34;buildDir/toArchive&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>更加复杂的拷贝：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="n">task</span> <span class="n">copyPdfReportsForArchiving</span><span class="p">(</span><span class="n">type</span><span class="p">:</span> <span class="n">Copy</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">from</span> <span class="s">&#34;buildDir/reports&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">include</span> <span class="s">&#34;*.pdf&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">into</span> <span class="s">&#34;buildDir/toArchive&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当然拷贝还有更加复杂的应用。这里就不详细讲解了。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/maven-/">Maven </a>
+        
+            <a href="/tags/gradle/">Gradle</a>
+        
+            <a href="/tags/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/">构建工具</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Lynn&rsquo;s Blog</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/gradle%E5%85%A5%E9%97%A8%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/%e5%9b%be.jpg" loading="lazy" data-key="" data-hash="/图.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Gradle入门与使用指南</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/%e7%bb%8f%e5%85%b8%e6%8e%92%e5%ba%8f%e7%ae%97%e6%b3%95/849589-20190306165258970-1789860540.png" loading="lazy" data-key="" data-hash="/经典排序算法/849589-20190306165258970-1789860540.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">十大经典排序算法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E4%B8%80%E8%A7%88/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/%e5%9b%be.jpg" loading="lazy" data-key="" data-hash="/图.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Java集合框架：数据结构及常用操作一览</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/spring-mvc-%E4%B8%AD%E7%9A%84model/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/%e5%9b%be.jpg" loading="lazy" data-key="" data-hash="/图.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Spring MVC 中的Model</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/java%E4%B8%AD%E7%9A%84optional%E7%B1%BB/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/%e5%9b%be.jpg" loading="lazy" data-key="" data-hash="/图.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Java中的Optional类</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Lynn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
