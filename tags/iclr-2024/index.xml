@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>ICLR 2024 on Lynn&#39;s Blog</title>
+        <link>https://lynnn-yu.github.io/tags/iclr-2024/</link>
+        <description>Recent content in ICLR 2024 on Lynn&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Lynn</copyright>
+        <lastBuildDate>Sat, 12 Oct 2024 20:13:28 +0800</lastBuildDate><atom:link href="https://lynnn-yu.github.io/tags/iclr-2024/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>阅读笔记：《THE UNLOCKING SPELL ON BASE LLMS RETHINKING ALIGNMENT VIA IN-CONTEXT LEARNING》</title>
+        <link>https://lynnn-yu.github.io/p/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0the-unlocking-spell-on-base-llms-rethinking-alignment-via-in-context-learning/</link>
+        <pubDate>Sat, 12 Oct 2024 20:13:28 +0800</pubDate>
+        
+        <guid>https://lynnn-yu.github.io/p/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0the-unlocking-spell-on-base-llms-rethinking-alignment-via-in-context-learning/</guid>
+        <description>&lt;img src="https://lynnn-yu.github.io/v2-98655f9c2f3260a467bec871b16a9cff_r.jpg" alt="Featured image of post 阅读笔记：《THE UNLOCKING SPELL ON BASE LLMS RETHINKING ALIGNMENT VIA IN-CONTEXT LEARNING》" /&gt;ICLR 2024 | 大模型对齐 | URIAL： Untuned LLMs with Restyled In-context ALignment（未调优LLM与重新风格化的上下文对齐）</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -7,7 +7,15 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Lynn</copyright>
-        <lastBuildDate>Wed, 25 Sep 2024 18:44:57 +0800</lastBuildDate><atom:link href="https://lynnn-yu.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 12 Oct 2024 20:13:28 +0800</lastBuildDate><atom:link href="https://lynnn-yu.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>阅读笔记：《THE UNLOCKING SPELL ON BASE LLMS RETHINKING ALIGNMENT VIA IN-CONTEXT LEARNING》</title>
+        <link>https://lynnn-yu.github.io/p/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0the-unlocking-spell-on-base-llms-rethinking-alignment-via-in-context-learning/</link>
+        <pubDate>Sat, 12 Oct 2024 20:13:28 +0800</pubDate>
+        
+        <guid>https://lynnn-yu.github.io/p/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0the-unlocking-spell-on-base-llms-rethinking-alignment-via-in-context-learning/</guid>
+        <description>&lt;img src="https://lynnn-yu.github.io/v2-98655f9c2f3260a467bec871b16a9cff_r.jpg" alt="Featured image of post 阅读笔记：《THE UNLOCKING SPELL ON BASE LLMS RETHINKING ALIGNMENT VIA IN-CONTEXT LEARNING》" /&gt;ICLR 2024 | 大模型对齐 | URIAL： Untuned LLMs with Restyled In-context ALignment（未调优LLM与重新风格化的上下文对齐）</description>
+        </item>
+        <item>
         <title>Maven 与 Gradle 的区别与迁移</title>
         <link>https://lynnn-yu.github.io/p/maven-%E4%B8%8E-gradle-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%BF%81%E7%A7%BB/</link>
         <pubDate>Wed, 25 Sep 2024 18:44:57 +0800</pubDate>
