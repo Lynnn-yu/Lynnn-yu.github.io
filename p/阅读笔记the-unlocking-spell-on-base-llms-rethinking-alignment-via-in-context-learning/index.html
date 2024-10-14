@@ -318,11 +318,11 @@
 <p>1.对齐调整(常用SFT+RLHF)究竟如何改变基础 LLM？</p>
 <p>“表面对齐假设”(《LIMA: Less Is More for Alignment》：仅使用 1K 个 SFT 示例也可以实现显着的对齐性能，这表明对齐调整的效果可能是“表面的”)，该假设认为对齐调整可能只是教会基础 LLM 选择一组数据格式来与用户交互。</p>
 <p>=&gt;问题：对齐调整(常用SFT+RLHF)究竟如何改变基础 LLM？</p>
-<p>Method：检查基础 LLM 和其对齐LLM之间的$\color{red}{token distribution shift}$来分析对齐调整的效果。</p>
-<p>用户的输入为：  </p>
-\[ q = \{q_1, q_2, \dots\} \]<p>  ，对齐后模型的输出为：</p>
-\[ o = \{o_1, o_2, \dots\} \]<p>  。( P_{\text{align}} ) 表示在该位置每一个 token 的概率分布。在位置 \( t \) 的 token 上下文表示为：</p>
-\[ x_t = q + \{o_1, \dots, o_{t-1}\} \]<p>  ，然后将 \( x_t \) 代入 Base LLM 中，生成一个概率分布 \( P_{\text{base}} \)。</p>
+<p>Method：检查基础 LLM 和其对齐LLM之间的<strong>token distribution shift</strong>来分析对齐调整的效果。</p>
+<p>用户的输入为 \(q = \{q_1, q_2, \dots\}\)，对齐后模型的输出为 \(o = \{o_1, o_2, \dots\}\)。<br>
+\(P_{\text{align}}\) 表示在该位置的每一个 token 的概率分布。</p>
+<p>在位置 \(t\) 的 token 上下文表示为 \(x_t = q + \{o_1, \dots, o_{t-1}\}\)。<br>
+然后将 \(x_t\) 代入 Base LLM 中，生成一个概率分布 \(P_{\text{base}}\)。</p>
 <p>=&gt;如果基础模型学会通过对齐调整来修改其在此上下文中的行为，我们应该观察到  \( P_{\text{base}} \)和( P_{\text{align}} ) 之间的分布在此位置发生变化。另一方面，如果这两个分布彼此非常相似，则意味着对齐调整对此位置的影响微乎其微。</p>
 <p>Analysis：</p>
 <p><img src="/image-20241014191835066.png"
