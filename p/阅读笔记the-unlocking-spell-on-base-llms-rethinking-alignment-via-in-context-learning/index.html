@@ -369,7 +369,7 @@
 <h2 id="对齐调整常用sftrlhf究竟如何改变基础-llm">对齐调整(常用SFT+RLHF)究竟如何改变基础 LLM？
 </h2><h3 id="motivation">Motivation
 </h3><p><strong>“表面对齐假设”</strong>(《LIMA: Less Is More for Alignment》：仅使用 1K 个 SFT 示例也可以实现显着的对齐性能，这表明对齐调整的效果可能是“表面的”)，该假设认为对齐调整可能只是教会基础 LLM 选择一组数据格式来与用户交互。</p>
-<p><strong><u>=&gt;$\textcolor{CarnationPink}{Question：对齐调整(常用SFT+RLHF)究竟如何改变基础 LLM？}$</u></strong></p>
+<p><strong><u>=&gt;Question：对齐调整(常用SFT+RLHF)究竟如何改变基础 LLM？</u></strong></p>
 <h3 id="method">Method
 </h3><p>检查基础 LLM 和其对齐LLM之间的<strong>token distribution shift</strong>来分析对齐调整的效果。</p>
 <p>用户的输入为$q = {q_1, q_2, \dots}$ ，对齐后模型的输出为 $o = {o_1, o_2, \dots}$。  $P_{\text{align}}$ 表示在该位置的每一个 token 的概率分布。  在位置 $t$的 token 上下文表示为 $x_t = q + {o_1, \dots, o_{t-1}}$。 然后将$x_t$ 代入 Base LLM 中，生成一个概率分布 $P_{\text{base}}$。</p>
@@ -460,9 +460,17 @@
 <p>GPT-4                                                                                         GPT-3.5</p>
 <p><img src="/image-20241014210529046.png" alt="image-20241014210529046" style="zoom:50%;" /><img src="/image-20241014210543573.png" alt="image-20241014210543573" style="zoom: 40%;" /></p>
 <img src="/image-20241014210847693.png" alt="image-20241014210847693" style="zoom:67%;" />
+<ul>
+<li>
 <p>URIAL 的表现优于无需调整对齐的基线方法。</p>
+</li>
+<li>
 <p>当基础 LLM 很强时，URIAL 甚至比 SFT 和 RLHF 表现更好。</p>
+</li>
+<li>
 <p>对齐的 LLM 可能会忘记知识并变得过于敏感。如图B.1、B.2</p>
+</li>
+</ul>
 <p><img src="/image-20241015161735736.png" alt="image-20241015161735736" style="zoom: 50%;" /><img src="/image-20241015161829145.png" alt="image-20241015161829145" style="zoom:75%;" /></p>
 <p>Q：URIAL 对上下文示例的选择敏感吗？</p>
 <p>使用 Mistral-7b 对 URIAL 进行了三个不同示例的测试。我们发现整体性能甚至比默认版本（4.63 vs. 4.64）还要好一点。这表明 URIAL 对所提供的 ICL 示例的变化具有鲁棒性。</p>
