@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="大模型对齐的RLHF/PPO/DPO技术介绍">
+<title>RLHF/PPO/DPO介绍</title>
+
+<link rel='canonical' href='https://lynnn-yu.github.io/p/rlhf/ppo/dpo%E4%BB%8B%E7%BB%8D/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="RLHF/PPO/DPO介绍">
+<meta property='og:description' content="大模型对齐的RLHF/PPO/DPO技术介绍">
+<meta property='og:url' content='https://lynnn-yu.github.io/p/rlhf/ppo/dpo%E4%BB%8B%E7%BB%8D/'>
+<meta property='og:site_name' content='Lynn&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='强化学习' /><meta property='article:tag' content='大模型对齐' /><meta property='article:tag' content='LLM' /><meta property='article:tag' content='算法' /><meta property='article:published_time' content='2024-10-17T19:20:40&#43;08:00'/><meta property='article:modified_time' content='2024-10-17T19:20:40&#43;08:00'/><meta property='og:image' content='https://lynnn-yu.github.io/image-20241017165214624.png' />
+<meta name="twitter:title" content="RLHF/PPO/DPO介绍">
+<meta name="twitter:description" content="大模型对齐的RLHF/PPO/DPO技术介绍"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://lynnn-yu.github.io/image-20241017165214624.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu17448351434459958630.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐟</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Lynn&#39;s Blog</a></h1>
+            <h2 class="site-description">Record My Tiny World.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Lynnn-yu'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E%E6%88%91/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://lynnn-yu.github.io/" selected>English</option>
+                                
+                                    <option value="https://lynnn-yu.github.io/zh-cn/" >中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1rlhfppodpo是什么">1、RLHF/PPO/DPO是什么？</a></li>
+    <li><a href="#2为什么要使用rlhfppodpo">2、为什么要使用RLHF/PPO/DPO？</a></li>
+    <li><a href="#3-ppoproximal-policy-optimization近端策略优化">3. PPO（<strong>Proximal Policy Optimization</strong>，<strong>近端策略优化</strong>）</a>
+      <ol>
+        <li><a href="#ppo的关键特点">PPO的关键特点：</a></li>
+        <li><a href="#ppo的具体算法">PPO的具体算法：</a>
+          <ol>
+            <li><a href="#1-策略比值ratio-of-policies">1. 策略比值（Ratio of Policies）</a></li>
+            <li><a href="#2-限制策略更新的幅度剪切clipping机制">2. 限制策略更新的幅度：剪切（Clipping）机制</a></li>
+            <li><a href="#3-信赖域约束trust-region-constraint与-ppo-的差异">3. 信赖域约束（Trust Region Constraint）与 PPO 的差异</a></li>
+            <li><a href="#4-ppo优化目标">4. PPO优化目标</a></li>
+            <li><a href="#5-总结">5. 总结</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#dpodirect-preference-optimization直接偏好优化">DPO（Direct Preference Optimization，直接偏好优化）</a>
+      <ol>
+        <li><a href="#1-dpo-的基本概念">1. DPO 的基本概念</a></li>
+        <li><a href="#2-dpo-的核心机制">2. DPO 的核心机制</a>
+          <ol>
+            <li><a href="#1-收集偏好数据">1. 收集偏好数据</a></li>
+            <li><a href="#2-构建优化目标偏好概率模型">2. 构建优化目标：偏好概率模型</a></li>
+            <li><a href="#3-损失函数最大化正确偏好概率">3. 损失函数：最大化正确偏好概率</a></li>
+            <li><a href="#4-训练过程">4. 训练过程</a></li>
+          </ol>
+        </li>
+        <li><a href="#3-优势函数的消除">3. 优势函数的消除</a></li>
+        <li><a href="#4-相对偏好学习">4. 相对偏好学习</a></li>
+        <li><a href="#5-与对比学习的关系">5. 与对比学习的关系</a></li>
+        <li><a href="#6-总结dpo-的工作流程">6. 总结：DPO 的工作流程</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/rlhf/ppo/dpo%E4%BB%8B%E7%BB%8D/">
+                
+                    <img src="/image-20241017165214624.png" loading="lazy" alt="Featured image of post RLHF/PPO/DPO介绍" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" >
+                论文阅读
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/rlhf/ppo/dpo%E4%BB%8B%E7%BB%8D/">RLHF/PPO/DPO介绍</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            大模型对齐的RLHF/PPO/DPO技术介绍
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024/10/17 19:20:40</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="1rlhfppodpo是什么">1、RLHF/PPO/DPO是什么？
+</h2><p>RLHF（Reinforcement Learning from Human Feedback，基于人类反馈的强化学习）是一种机器学习（ML）技术，它利用人类反馈来优化 ML 模型，从而更有效地进行自我学习。</p>
+<blockquote>
+<p>即：收集符合人类价值偏好的数据集，对LLM进行微调，使其回答向人类价值观对齐。</p>
+</blockquote>
+<p><img src="/v2-ee215bedf45de4a5e08e5a3d04e2d275_1440w.webp"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<p><a class="link" href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/2009.01325"  target="_blank" rel="noopener"
+    >《Learning to summarize from human feedback》</a></p>
+<p><img src="/image-20241017165214624.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241017165214624"
+	
+	
+></p>
+<p>PPO（Proximal Policy Optimization）是OpenAI在2017提出的一种强化学习算法，是基于策略优化的算法，用于训练能够最大化累积奖励的智能体。PPO算法通过在每次更新时限制新策略与旧策略之间的差异，从而更稳定地更新策略参数。这种方法有助于避免训练过程中出现的不稳定性和剧烈波动，使得算法更容易收敛并学习到更好的策略。</p>
+<blockquote>
+<p>即：PPO是RLHF实施用到的具体算法</p>
+</blockquote>
+<p><a class="link" href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1707.06347"  target="_blank" rel="noopener"
+    >《Proximal Policy Optimization Algorithms》</a></p>
+<p>DPO（Direct Preference Optimization， 直接偏好优化）是一种稳定的、性能和计算成本轻量级的强化学习算法。通过利用奖励函数与最优策略之间的映射关系，证明这个受限的奖励最大化问题可以通过单阶段的策略训练来精确优化，本质上是在人类偏好数据上解决一个分类问题。</p>
+<blockquote>
+<p>即：DPO是相对于PPO更加稳定、低成本的强化学习方法</p>
+</blockquote>
+<p><a class="link" href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/2305.18290"  target="_blank" rel="noopener"
+    >《Direct Preference Optimization: Your Language Model is Secretly a Reward Model》</a></p>
+<p><img src="/image-20241017192604108.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20241017192604108"
+	
+	
+></p>
+<h2 id="2为什么要使用rlhfppodpo">2、为什么要使用RLHF/PPO/DPO？
+</h2><p>LLM在预训练时是直接输入大量文本进行训练，根据当前token预测下一个token。那么当用户输入一段英文时，是继续编写下文 or 进行翻译 or 进行对话？，模型本身无法区分具体任务。因此需要指令微调，针对指定任务，可以针对性的优化LLM的性能。大部分LLM从功能上说到这里就足够了。</p>
+<p><strong>但是对于一个成熟的LLM产品，不但功能要强，还不能胡编乱造，不能回答一些非法问题，不能触犯zzzq，因此RLHF就出现了。</strong></p>
+<p>RLHF通过收集人类反馈数据（符合人类偏好的数据），训练出奖励模型，通过奖励模型评估LLM的答案，更新LLM权重，最终得到答案符合人类偏好的LLM。具体使用的策略就是PPO算法。</p>
+<p>但是RLHF是一个复杂且经常不稳定的过程，首先拟合反映人类偏好的奖励模型，然后使用强化学习微调大型无监督 LM，以最大化这种估计奖励，而不会偏离原始模型太远。且PPO需要收集大量人类偏好数据、需要训练奖励模型、RLHF需要同时加载多个模型进行训练，训练难度较大。</p>
+<p>提出了使用DPO的方式进行训练。</p>
+<p><img src="/v2-1502534b7e614e64b3a9e1a4568ee93a_r.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h2 id="3-ppoproximal-policy-optimization近端策略优化">3. PPO（<strong>Proximal Policy Optimization</strong>，<strong>近端策略优化</strong>）
+</h2><p>PPO（<strong>Proximal Policy Optimization</strong>，<strong>近端策略优化</strong>）是一种用于强化学习的算法，主要目的是在训练过程中保证策略更新的<strong>稳定性</strong>和<strong>效率</strong>。</p>
+<p>简单来说，PPO通过限制每次策略更新的幅度，避免模型在学习过程中发生大幅度的性能波动，从而使训练更加稳定。它主要用于<strong>优化策略</strong>，即帮助智能体根据环境中的反馈（奖励）来不断改进它的行动策略，使其能够更好地完成任务。</p>
+<h3 id="ppo的关键特点">PPO的关键特点：
+</h3><ol>
+<li><strong>策略更新的限制</strong>：每次更新时，PPO会确保新的策略不会偏离旧策略太远，防止策略更新过大带来的不稳定性。</li>
+<li><strong>计算高效</strong>：PPO相比其他复杂的强化学习算法（如TRPO）更简单，同时还能保证较好的效果，因而在大语言模型的强化学习（如RLHF）中被广泛应用。</li>
+</ol>
+<h3 id="ppo的具体算法">PPO的具体算法：
+</h3><p><strong>PPO（Proximal Policy Optimization）<strong>通过引入</strong>剪切（clipping）<strong>和</strong>信赖域约束</strong>来限制每次策略更新的幅度，确保模型在训练过程中保持稳定性。下面是PPO如何具体限制更新幅度的详细解释：</p>
+<h4 id="1-策略比值ratio-of-policies">1. 策略比值（Ratio of Policies）
+</h4><p>PPO基于强化学习中的策略梯度方法，目的是通过迭代优化策略，使得智能体能够更好地根据环境作出决策。在每次更新时，PPO引入了一个<strong>策略比值（ratio of policies）</strong>，用来表示新策略与旧策略在同一状态下选择相同行动的概率比：</p>
+$$
+r(\theta) = \frac{\pi_{\theta_{\text{new}}}(a|s)}{\pi_{\theta_{\text{old}}}(a|s)}
+$$<p>其中：</p>
+<ul>
+<li>$\pi_{\theta_{\text{new}}}(a|s)$ 是当前新策略（参数为$\theta_{\text{new}}$）在状态 $s$ 下选择动作 $a$ 的概率。</li>
+<li>$\pi_{\theta_{\text{old}}}(a|s)$ 是旧策略（参数为$\theta_{\text{old}}$）在同一状态下选择动作 $a$ 的概率。</li>
+</ul>
+<p>这个比值 $r(\theta)$ 反映了新旧策略在当前状态和动作下的差异。</p>
+<h4 id="2-限制策略更新的幅度剪切clipping机制">2. 限制策略更新的幅度：剪切（Clipping）机制
+</h4><p>PPO的核心思想是防止新策略与旧策略差异过大，因此它使用<strong>剪切（clipping）机制</strong>来限制策略更新的幅度。具体做法是：</p>
+$$
+L^{\text{CLIP}}(\theta) = \min \left( r(\theta) \cdot \hat{A}(s,a), \, \text{clip}(r(\theta), 1 - \epsilon, 1 + \epsilon) \cdot \hat{A}(s,a) \right)
+$$<p>其中：</p>
+<ul>
+<li>$ \hat{A}(s, a) $ 是<strong>优势函数（advantage function）</strong>，表示在给定状态 $s$ 下选择动作 $a $的优势（即相对于其他可能的动作，这个动作有多好）。</li>
+<li>$\epsilon$ 是一个超参数，通常取值较小（例如 0.1 或 0.2），用于控制策略更新的幅度。</li>
+</ul>
+<p>PPO通过这个公式的<strong>最小值操作</strong>，确保策略更新时的比值 $r(\theta)</p>
+$$ 不会偏离 1 太多。如果 $$<p>r(\theta)</p>
+$$ 的变化超过了 $$<p>1 + \epsilon</p>
+$$ 或小于 $$<p>1 - \epsilon$，更新就会被限制在 $[1 - \epsilon, 1 + \epsilon]$ 之间。这种限制能够防止策略的更新过大，避免强化学习过程中出现不稳定的情况。</p>
+<p><strong>简化解释：</strong></p>
+<ul>
+<li>如果新策略和旧策略的差异太大（即 $r(\theta)$ 过大或过小），模型就会限制更新幅度，不允许它过度偏离原来的策略。</li>
+<li>剪切机制有效地防止了过大更新，从而使策略的每次改进更加平稳。</li>
+</ul>
+<h4 id="3-信赖域约束trust-region-constraint与-ppo-的差异">3. 信赖域约束（Trust Region Constraint）与 PPO 的差异
+</h4><p>在 PPO 之前，有一种更复杂的策略优化算法叫做 <strong>TRPO（Trust Region Policy Optimization）</strong>，其通过引入信赖域约束来防止策略更新过大。TRPO 通过一个较为复杂的优化过程来确保新旧策略之间的“距离”（通常以 KL散度度量）不会超过某个阈值。</p>
+<p>相比之下，PPO的<strong>剪切机制</strong>是一种更简单的方式实现类似的目标，直接通过限制策略比值 $r(\theta)$ 的变化范围来控制更新的幅度。这种方式虽然相对简单，但效果显著，且计算效率更高，因此被广泛采用。</p>
+<h4 id="4-ppo优化目标">4. PPO优化目标
+</h4><p>最终的优化目标是通过最大化“裁剪后的目标函数”（即上面提到的 $\min$ 操作结果）来更新策略。这个目标函数鼓励策略在优势较大的状态下进行更新，但同时避免了策略变化过大可能带来的不稳定性。</p>
+<h4 id="5-总结">5. 总结
+</h4><p><strong>PPO如何限制更新幅度</strong>：</p>
+<ul>
+<li><strong>策略比值</strong>：通过计算新旧策略在相同行动上的概率比，衡量策略的变化。</li>
+<li><strong>剪切机制</strong>：如果策略比值超出了允许范围（通常设为 $[1 - \epsilon, 1 + \epsilon]$），则剪切比值，限制策略更新幅度。</li>
+<li><strong>效果</strong>：这种方法使得策略每次更新时不会变化太大，保持了强化学习过程的稳定性，并且相比更复杂的 TRPO，PPO 的效率更高，适用于大规模模型训练。</li>
+</ul>
+<p>因此，PPO 是一种平衡了策略改进速度与训练稳定性的强化学习算法，通过限制策略的更新幅度，确保每次训练迭代都在“信赖域”内进行，避免策略偏离太远导致不稳定的情况。</p>
+<h2 id="dpodirect-preference-optimization直接偏好优化">DPO（Direct Preference Optimization，直接偏好优化）
+</h2><p><strong>DPO（Direct Preference Optimization，直接偏好优化）</strong> 是一种新兴的用于对齐语言模型的技术。与传统的强化学习方法（如RLHF）不同，DPO不依赖于奖励模型或强化学习的复杂机制，而是通过直接利用人类偏好数据来优化模型，使模型生成的输出更加符合人类的期望。</p>
+<h3 id="1-dpo-的基本概念">1. DPO 的基本概念
+</h3><p>在 <strong>RLHF（Reinforcement Learning from Human Feedback）</strong> 中，首先需要用人类反馈训练一个奖励模型，之后通过强化学习来优化语言模型的策略。相比之下，<strong>DPO</strong> 跳过了这个复杂的过程，直接基于人类偏好对模型进行优化，简化了训练步骤并减少了计算成本。</p>
+<h3 id="2-dpo-的核心机制">2. DPO 的核心机制
+</h3><p>DPO 的核心思想是通过直接偏好反馈来训练模型。其步骤如下：</p>
+<h4 id="1-收集偏好数据">1. 收集偏好数据
+</h4><p>在 DPO 中，首先需要从人类标注员那里收集偏好数据。这些数据通过让人类比较多个模型生成的输出，选择他们认为“更好”的结果，构建成“偏好对”（preference pairs）。每一组偏好数据包含：</p>
+<ul>
+<li><strong>输入</strong>（例如一个问题或任务指令）</li>
+<li><strong>多个模型生成的响应</strong>（这些响应基于输入生成）</li>
+<li><strong>人类的偏好选择</strong>（标注员选择认为更好的响应）</li>
+</ul>
+<p>例如，如果模型生成了两个输出，标注员会选择其中一个作为更优结果，形成一个二元偏好对。</p>
+<h4 id="2-构建优化目标偏好概率模型">2. 构建优化目标：偏好概率模型
+</h4><p>DPO 直接利用人类的偏好反馈来优化模型。它通过引入一个<strong>偏好概率模型</strong>，该模型通过比较两个输出生成的概率，来优化更符合人类偏好的输出。具体来说，给定两个模型输出的偏好对，DPO 通过最大化人类选择的“更好”响应的生成概率来训练模型。</p>
+<p>假设我们有两个输出：</p>
+<ul>
+<li><strong>输出1</strong>（人类偏好）：$y_1$</li>
+<li><strong>输出2</strong>（人类不偏好）：$y_2$</li>
+</ul>
+<p>对于这两个输出，DPO 使用以下概率模型来表示人类选择某个输出的概率：</p>
+$$ P(y_1 \,|\, x) = \frac{\exp(\pi_\theta(x, y_1))}{\exp(\pi_\theta(x, y_1)) + \exp(\pi_\theta(x, y_2))} $$<p>这里：</p>
+<ul>
+<li>$x$ 是输入，$y_1$ 和 $y_2$ 是模型生成的两个响应。</li>
+<li>$\pi_\theta(x, y)$ 是模型的生成得分函数（可以理解为模型对特定输出的信心得分，或称为“对数概率”）。</li>
+<li>这个概率模型表示人类选择 $y_1$ 的概率与它的生成得分成正比。</li>
+</ul>
+<h4 id="3-损失函数最大化正确偏好概率">3. 损失函数：最大化正确偏好概率
+</h4><p>DPO 的优化目标是通过最大化人类偏好的选择概率来调整模型参数。对于每一个偏好对，DPO 希望模型能够生成让人类偏好的那个输出 $y_1$ 的概率最大。因此，DPO 构建的损失函数为：</p>
+$$ L(\theta) = -\log P(y_1 \,|\, x) $$<p>该损失函数会使得在偏好数据中被人类选择的输出（$y_1$）的生成概率不断增大，最终模型会倾向于生成更符合人类偏好的输出。</p>
+<h4 id="4-训练过程">4. 训练过程
+</h4><p>DPO 使用偏好对数据进行训练的具体步骤如下：</p>
+<ol>
+<li><strong>输入采样</strong>：给定一组输入，模型会生成多个可能的输出（即候选响应）。</li>
+<li><strong>人类偏好选择</strong>：人类标注员会从这些输出中选择更好的一个作为优选输出。</li>
+<li><strong>构建损失</strong>：根据人类的选择，构建损失函数。模型更新的目标是最大化人类偏好的响应生成概率，同时最小化不被偏好响应的生成概率。</li>
+<li><strong>参数更新</strong>：使用反向传播算法，基于偏好对数据调整模型参数，使得模型在未来能够生成更符合人类偏好的结果。</li>
+</ol>
+<h3 id="3-优势函数的消除">3. 优势函数的消除
+</h3><p>与 RLHF 不同的是，DPO 并不需要通过奖励模型计算优势函数（advantage function）。在 RLHF 中，优势函数用于评估当前策略输出的相对优越性，而 DPO 直接使用偏好对中的二元选择进行优化，减少了对中间步骤的依赖。</p>
+<h3 id="4-相对偏好学习">4. 相对偏好学习
+</h3><p>DPO 实质上是一种<strong>相对偏好学习</strong>。它并不要求绝对的“正确”答案，而是只需要模型根据偏好对中较为优选的结果进行优化。这种相对偏好学习方式降低了对标注数据的要求，因为它不需要明确的标签，而只需要“更好”或“更差”的相对比较。</p>
+<h3 id="5-与对比学习的关系">5. 与对比学习的关系
+</h3><p>DPO 在一定程度上类似于<strong>对比学习</strong>（Contrastive Learning），因为它依赖于比较多个候选输出，并通过最大化正确响应相对其他响应的优势来训练模型。不同的是，DPO 不需要对比所有可能的候选输出，而是仅在一对候选输出中进行优化。</p>
+<h3 id="6-总结dpo-的工作流程">6. 总结：DPO 的工作流程
+</h3><ol>
+<li><strong>数据收集</strong>：人类标注员为同一输入选择两个候选输出，形成偏好对。</li>
+<li><strong>概率建模</strong>：通过构建选择优选响应的概率模型，计算两个候选响应的概率比。</li>
+<li><strong>损失计算</strong>：最大化人类偏好的响应的生成概率，构建损失函数。</li>
+<li><strong>训练与更新</strong>：通过损失函数优化模型参数，使得未来的输出更符合人类的偏好。</li>
+</ol>
+<p>DPO 的核心机制在于直接从人类的偏好数据中学习，并通过概率建模和损失函数的设计，简化了对齐模型的训练流程。这使得 DPO 在计算上更加高效，适合于快速对齐任务的场景。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a>
+        
+            <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AF%B9%E9%BD%90/">大模型对齐</a>
+        
+            <a href="/tags/llm/">LLM</a>
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Lynn&rsquo;s Blog</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0the-unlocking-spell-on-base-llms-rethinking-alignment-via-in-context-learning/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/v2-98655f9c2f3260a467bec871b16a9cff_r.jpg" loading="lazy" data-key="" data-hash="/v2-98655f9c2f3260a467bec871b16a9cff_r.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">阅读笔记：《THE UNLOCKING SPELL ON BASE LLMS RETHINKING ALIGNMENT VIA IN-CONTEXT LEARNING》</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/%e7%bb%8f%e5%85%b8%e6%8e%92%e5%ba%8f%e7%ae%97%e6%b3%95/849589-20190306165258970-1789860540.png" loading="lazy" data-key="" data-hash="/经典排序算法/849589-20190306165258970-1789860540.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">十大经典排序算法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/floyd-%E5%88%A4%E5%9C%88%E7%AE%97%E6%B3%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/%e5%9b%be.jpg" loading="lazy" data-key="" data-hash="/图.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Floyd 判圈算法</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Lynn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.27.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
