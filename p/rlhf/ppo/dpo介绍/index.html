@@ -379,6 +379,7 @@
 <blockquote>
 <p>即：收集符合人类价值偏好的数据集，对LLM进行微调，使其回答向人类价值观对齐。</p>
 </blockquote>
+<img src="/1692179ef497ac98eaca9eb37d4f861e.png" alt="img" style="zoom:67%;" />
 <p><img src="/v2-ee215bedf45de4a5e08e5a3d04e2d275_1440w.webp"
 	
 	
@@ -468,10 +469,8 @@ $$<p>其中：</p>
 <li>$ \hat{A}(s, a) $ 是<strong>优势函数（advantage function）</strong>，表示在给定状态 $s$ 下选择动作 $a $的优势（即相对于其他可能的动作，这个动作有多好）。</li>
 <li>$\epsilon$ 是一个超参数，通常取值较小（例如 0.1 或 0.2），用于控制策略更新的幅度。</li>
 </ul>
-<p>PPO通过这个公式的<strong>最小值操作</strong>，确保策略更新时的比值 $r(\theta)</p>
-$$ 不会偏离 1 太多。如果 $$<p>r(\theta)</p>
-$$ 的变化超过了 $$<p>1 + \epsilon</p>
-$$ 或小于 $$<p>1 - \epsilon$，更新就会被限制在 $[1 - \epsilon, 1 + \epsilon]$ 之间。这种限制能够防止策略的更新过大，避免强化学习过程中出现不稳定的情况。</p>
+<p>PPO通过这个公式的<strong>最小值操作</strong>，确保策略更新时的比值 $r(\theta)$ 不会偏离 1 太多。如果 $r(\theta)$ 的变化超过了 </p>
+$$1 + \epsilon$$<p> 或小于 $1 - \epsilon$，更新就会被限制在 $[1 - \epsilon, 1 + \epsilon]$ 之间。这种限制能够防止策略的更新过大，避免强化学习过程中出现不稳定的情况。</p>
 <p><strong>简化解释：</strong></p>
 <ul>
 <li>如果新策略和旧策略的差异太大（即 $r(\theta)$ 过大或过小），模型就会限制更新幅度，不允许它过度偏离原来的策略。</li>
